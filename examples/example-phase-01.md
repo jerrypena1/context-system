@@ -35,7 +35,7 @@ Set up the development environment, install all dependencies, configure build to
   - [x] `/src/utils/`
   - [x] `/src/styles/`
 - [x] Create README.md with setup instructions
-- [x] Create initial CLAUDE.md and _tasks.md
+- [x] Create initial CLAUDE.md (root) and /docs/_tasks.md
 
 ### Build Configuration
 - [x] Configure Vite/Webpack for development
@@ -62,6 +62,8 @@ Set up the development environment, install all dependencies, configure build to
 - `vite.config.js`
 - `src/main.jsx`
 - `src/App.jsx`
-- README.md
-- CLAUDE.md
-- _tasks.md
+- `README.md`
+- `CLAUDE.md` (root)
+- `/docs/_tasks.md`
+- `/docs/ARCHITECTURE.md`
+- `/docs/LESSONS_LEARNED.md`

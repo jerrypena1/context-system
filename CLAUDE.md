@@ -36,29 +36,29 @@ After gathering sufficient information:
 2. **Read and customize templates from `~/.claude/templates/`**:
    - Read `~/.claude/templates/_tasks.md`
    - Customize with project-specific phases
-   - Write to project root as `_tasks.md`
+   - Write to `/docs/_tasks.md`
 
 3. **Create ARCHITECTURE.md**:
    - Read `~/.claude/templates/ARCHITECTURE.md`
    - Fill in with user's tech stack and system overview
-   - Write to `docs/ARCHITECTURE.md`
+   - Write to `/docs/ARCHITECTURE.md`
 
 4. **Create phase files**:
-   - Read `~/.claude/templates/phase-XX.md`
-   - Create one file per phase in `docs/tasks/`
+   - Read `~/.claude/templates/phase-template.md`
+   - Create one file per phase in `/docs/tasks/`
    - Name: `phase-01-setup.md`, `phase-02-foundation.md`, etc.
    - Customize each with phase-specific tasks
 
 5. **Create LESSONS_LEARNED.md**:
    - Read `~/.claude/templates/LESSONS_LEARNED.md`
-   - Write to project root (empty template)
+   - Write to `/docs/LESSONS_LEARNED.md`
 
 6. **ASK PERMISSION**:
    > "I've created the project structure:
-   > - `_tasks.md` with [X] phases
-   > - `docs/ARCHITECTURE.md` with your tech stack
-   > - `docs/tasks/phase-*.md` files for each phase
-   > - `LESSONS_LEARNED.md` (empty template)
+   > - `/docs/_tasks.md` with [X] phases
+   > - `/docs/ARCHITECTURE.md` with your tech stack
+   > - `/docs/tasks/phase-*.md` files for each phase
+   > - `/docs/LESSONS_LEARNED.md` (empty template)
    >
    > Now I'll update this CLAUDE.md file with project-specific guidance. Proceed?"
 

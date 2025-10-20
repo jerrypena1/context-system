@@ -14,7 +14,7 @@ Check if `./CLAUDE.md` exists in project root.
 Ask the user:
 > "How would you like to set up this project?
 >
-> **A) Bootstrap Mode** - Full guided setup (creates _tasks.md, ARCHITECTURE.md, phase files)
+> **A) Bootstrap Mode** - Full guided setup (creates /docs/_tasks.md, /docs/ARCHITECTURE.md, phase files in /docs/tasks/)
 >   - I'll ask questions about your project
 >   - Create complete task management structure
 >   - Best for: Complex projects, team projects, long-term development

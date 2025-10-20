@@ -25,9 +25,15 @@
 │   │   ├── components/
 │   │   ├── services/
 │   │   └── ...
+├── CLAUDE.md
 ├── docs/
-│   ├── tasks/
+│   ├── _tasks.md
 │   ├── ARCHITECTURE.md (this file)
+│   ├── LESSONS_LEARNED.md
+│   ├── tasks/
+│   │   ├── phase-01-*.md
+│   │   ├── phase-02-*.md
+│   │   └── ...
 │   └── ...
 └── ...
 ```

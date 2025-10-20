@@ -11,27 +11,27 @@ description: Re-bootstrap existing project to new optimized structure (preserves
 ## Step 1: Analyze Existing Project
 
 Check what files exist:
-- `_tasks.md` (old huge file)
-- `LESSONS_LEARNED.md` (may be large)
+- `_tasks.md` or `/docs/_tasks.md` (old huge file)
+- `LESSONS_LEARNED.md` or `/docs/LESSONS_LEARNED.md` (may be large)
 - `CLAUDE.md` (old project-level file)
-- `docs/ARCHITECTURE.md` (may or may not exist)
+- `/docs/ARCHITECTURE.md` (may or may not exist)
 
 Show the user what was found and ask:
 > "I found these files in your project:
-> - `_tasks.md` (X lines)
-> - `LESSONS_LEARNED.md` (Y lines)
+> - `_tasks.md` or `/docs/_tasks.md` (X lines)
+> - `LESSONS_LEARNED.md` or `/docs/LESSONS_LEARNED.md` (Y lines)
 > - `CLAUDE.md` (Z lines)
-> - `docs/ARCHITECTURE.md` (exists/missing)
+> - `/docs/ARCHITECTURE.md` (exists/missing)
 >
 > I'll re-bootstrap this to the new optimized structure:
 > 1. **Backup** everything to `/docs_backup/YYYY-MM-DD-HHMMSS/`
 > 2. **Discover** all referenced files by following the chain (CLAUDE.md → ARCHITECTURE.md → etc.)
-> 3. **Analyze** `_tasks.md` to identify phases
+> 3. **Analyze** existing tasks file to identify phases
 > 4. **Split** into phase files in `/docs/tasks/`
-> 5. **Create** new lean `_tasks.md` (high-level overview)
+> 5. **Create** new lean `/docs/_tasks.md` (high-level overview)
 > 6. **Analyze & Transform** `CLAUDE.md` to new lean format using context from ALL discovered files
-> 7. **Create** `ARCHITECTURE.md` if missing
-> 8. **Keep** `LESSONS_LEARNED.md` as-is (it's fine to be large)
+> 7. **Create** `/docs/ARCHITECTURE.md` if missing
+> 8. **Keep** `/docs/LESSONS_LEARNED.md` as-is (it's fine to be large)
 >
 > **Expected Result**:
 > - Reduced context load (~40% fewer lines)
@@ -50,6 +50,11 @@ cp _tasks.md docs_backup/$(date +%Y-%m-%d-%H%M%S)/ 2>/dev/null || true
 cp LESSONS_LEARNED.md docs_backup/$(date +%Y-%m-%d-%H%M%S)/ 2>/dev/null || true
 cp CLAUDE.md docs_backup/$(date +%Y-%m-%d-%H%M%S)/ 2>/dev/null || true
 cp -r docs docs_backup/$(date +%Y-%m-%d-%H%M%S)/ 2>/dev/null || true
+
+# Also backup any files already in /docs/ (new structure)
+mkdir -p docs_backup/$(date +%Y-%m-%d-%H%M%S)/docs
+cp docs/_tasks.md docs_backup/$(date +%Y-%m-%d-%H%M%S)/docs/ 2>/dev/null || true
+cp docs/LESSONS_LEARNED.md docs_backup/$(date +%Y-%m-%d-%H%M%S)/docs/ 2>/dev/null || true
 ```
 
 Tell user:
@@ -59,9 +64,9 @@ Tell user:
 
 ---
 
-## Step 3: Analyze and Split `_tasks.md`
+## Step 3: Analyze and Split Tasks File
 
-Read the old `_tasks.md` file carefully:
+Read the existing tasks file (either `_tasks.md` or `/docs/_tasks.md`) carefully:
 
 1. **Identify phases**:
    - Look for major section headings
@@ -76,7 +81,7 @@ Read the old `_tasks.md` file carefully:
 3. **Group tasks by phase**
 
 4. **Show analysis to user**:
-   > "I found these phases in your `_tasks.md`:
+   > "I found these phases in your tasks file:
    > - Phase 1: [Name] - X tasks completed, Y in progress, Z not started
    > - Phase 2: [Name] - A tasks completed, B in progress, C not started
    > - ...
@@ -97,24 +102,26 @@ Read the old `_tasks.md` file carefully:
    - `/docs/tasks/phase-02-[name].md` with Phase 2 tasks
    - etc.
 
-3. **Create new lean `_tasks.md`**:
+3. **Create new lean `/docs/_tasks.md`**:
    - Read template from `~/.claude/templates/_tasks.md`
    - Populate with phases from old file
    - Mark current phase with `[ ] 🚧`
    - Mark completed phases with `[x]`
    - Keep it ~150-200 lines (high-level overview only)
+   - Move old root-level `_tasks.md` to `/docs/_tasks.md` if needed
 
-4. **Create/Update `docs/ARCHITECTURE.md`**:
+4. **Create/Update `/docs/ARCHITECTURE.md`**:
    - If exists: Keep as-is (user may have customized it)
    - If missing: Ask user if they want to create it now
-     > "I notice `ARCHITECTURE.md` is missing. Would you like me to:
+     > "I notice `/docs/ARCHITECTURE.md` is missing. Would you like me to:
      > - **Create it now** (I'll ask about your tech stack)
      > - **Skip for now** (you can create it later)"
 
 5. **Transform `CLAUDE.md`** (see Step 4.5 below for details)
 
-6. **Keep `LESSONS_LEARNED.md`**:
-   - Don't touch it - it's fine to be large
+6. **Move and keep `/docs/LESSONS_LEARNED.md`**:
+   - Move from root to `/docs/LESSONS_LEARNED.md` if needed
+   - Don't modify contents - it's fine to be large
    - Valuable historical knowledge should stay intact
 
 ---
@@ -354,19 +361,19 @@ Show summary:
 >
 > **Created**:
 > - `/docs/tasks/` folder with X phase files
-> - New lean `_tasks.md` (Y lines, down from Z lines)
-> - `docs/ARCHITECTURE.md` [if created]
+> - New lean `/docs/_tasks.md` (Y lines, down from Z lines)
+> - `/docs/ARCHITECTURE.md` [if created]
 >
 > **Transformed**:
 > - `CLAUDE.md` (Y lines, down from Z lines) - New lean format with:
 >   - Project overview (synthesized from all discovered files)
->   - Organized dos/don'ts by category (from CLAUDE.md, LESSONS_LEARNED.md, etc.)
->   - Architecture reference (points to ARCHITECTURE.md)
->   - Current phase tracking (from _tasks.md)
+>   - Organized dos/don'ts by category (from CLAUDE.md, /docs/LESSONS_LEARNED.md, etc.)
+>   - Architecture reference (points to /docs/ARCHITECTURE.md)
+>   - Current phase tracking (from /docs/_tasks.md)
 >   - **Context sources**: Analyzed ~N lines across M files (CLAUDE.md + all referenced files)
 >
-> **Preserved**:
-> - `LESSONS_LEARNED.md` (unchanged)
+> **Moved & Preserved**:
+> - `/docs/LESSONS_LEARNED.md` (moved from root if needed, unchanged)
 > - All task progress and completion status
 > - All dos/don'ts patterns (reorganized)
 >
@@ -379,10 +386,10 @@ Show summary:
 > - Reduction: ~Z% fewer lines in typical session
 >
 > **Next Steps**:
-> - Review the new `_tasks.md` for accuracy
+> - Review the new `/docs/_tasks.md` for accuracy
 > - Check phase files in `/docs/tasks/`
 > - Review transformed `CLAUDE.md`
-> - Update `ARCHITECTURE.md` if needed
+> - Update `/docs/ARCHITECTURE.md` if needed
 > - Delete backup folder when satisfied (or keep for safety)"
 
 ---
@@ -395,7 +402,7 @@ Show summary:
   cp -r docs_backup/YYYY-MM-DD-HHMMSS/* ./
   ```
 
-**If `_tasks.md` has custom format**:
+**If tasks file has custom format**:
 - Ask user to help identify phase boundaries
 - Offer to create default 5 phases and let user reorganize
 

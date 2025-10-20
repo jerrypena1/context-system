@@ -25,10 +25,10 @@ Start the bootstrap process:
 3. Determine appropriate number of phases (3-5 for small, 5-7 for medium, 8-10 for large)
 4. Create project structure:
    - `mkdir -p docs/tasks`
-   - Create `_tasks.md` with customized phases
-   - Create `docs/ARCHITECTURE.md` with tech stack info
-   - Create phase files in `docs/tasks/` (phase-01-*.md, etc.)
-   - Create `LESSONS_LEARNED.md` (empty template)
+   - Create `/docs/_tasks.md` with customized phases
+   - Create `/docs/ARCHITECTURE.md` with tech stack info
+   - Create phase files in `/docs/tasks/` (phase-01-*.md, etc.)
+   - Create `/docs/LESSONS_LEARNED.md` (empty template)
 5. Ask for permission to update `./CLAUDE.md` with project-specific guidance
 6. After approval, create `./CLAUDE.md` with project-specific dos/don'ts
 

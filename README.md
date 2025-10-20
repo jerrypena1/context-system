@@ -97,33 +97,36 @@ Detects new project, asks for setup type:
 ### `/bootstrap`
 Jumps straight into full bootstrap setup:
 1. Asks about your project
-2. Creates task structure
-3. Creates architecture docs
-4. Replaces bootstrap CLAUDE.md with project-specific guidance
+2. Creates task structure (`/docs/_tasks.md`, `/docs/tasks/`)
+3. Creates architecture docs (`/docs/ARCHITECTURE.md`)
+4. Creates lessons learned file (`/docs/LESSONS_LEARNED.md`)
+5. Replaces bootstrap CLAUDE.md with project-specific guidance
 
 ### `/re-bootstrap`
 Migrate existing project from old structure:
 1. Backs up everything
 2. Discovers all referenced files (recursive)
-3. Splits huge `_tasks.md` into phase files
-4. Transforms CLAUDE.md using context from all discovered files
-5. Creates optimized structure
+3. Splits huge tasks file into phase files in `/docs/tasks/`
+4. Moves files to `/docs/` folder (except `CLAUDE.md` stays at root)
+5. Transforms CLAUDE.md using context from all discovered files
+6. Creates optimized structure
 
 ---
 
 ## Context Optimization
 
 **Before** (old system):
-- Single 500+ line `_tasks.md`
+- Single 500+ line `_tasks.md` at project root
 - Bloated 200-300 line `CLAUDE.md`
 - No architecture docs (repeated discovery)
 - Total: 700-1000+ lines per session
 
 **After** (new system):
-- Lean 150-line `_tasks.md` (high-level)
-- Active phase file (60-200 lines)
-- Lean 80-120 line `CLAUDE.md`
-- Architecture docs loaded on-demand
+- Lean 150-line `/docs/_tasks.md` (high-level)
+- Active phase file in `/docs/tasks/` (60-200 lines)
+- Lean 80-120 line `CLAUDE.md` at root
+- Architecture docs in `/docs/` loaded on-demand
+- `/docs/LESSONS_LEARNED.md` for historical knowledge
 - Total: 290-470 lines typical session
 - **~40-60% context reduction**
 

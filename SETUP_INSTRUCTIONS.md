@@ -95,7 +95,7 @@ Once set up, whenever you start a new project:
 
 ### Bootstrap Mode
 - Asks questions about your project
-- Creates `_tasks.md`, `ARCHITECTURE.md`, phase files, `LESSONS_LEARNED.md`
+- Creates `/docs/_tasks.md`, `/docs/ARCHITECTURE.md`, phase files in `/docs/tasks/`, `/docs/LESSONS_LEARNED.md`
 - Customizes everything based on your answers
 - Replaces bootstrap CLAUDE.md with project-specific guidance
 
@@ -137,18 +137,18 @@ Have an existing project with old structure? Use `/re-bootstrap`:
    - Reads any files it references (e.g., `ARCHITECTURE.md`)
    - Reads any files THOSE files reference (e.g., `INNOVATION_IDEAS.md`)
    - Builds comprehensive context from all project documentation
-3. **Analyzes** your current `_tasks.md` to find phases
+3. **Analyzes** your current tasks file (either `_tasks.md` or `/docs/_tasks.md`) to find phases
 4. **Splits** tasks into individual phase files in `/docs/tasks/`
-5. **Creates** new lean `_tasks.md` (~150 lines)
+5. **Creates** new lean `/docs/_tasks.md` (~150 lines)
 6. **Analyzes & Transforms** your existing `CLAUDE.md` to new lean format:
    - Uses context from ALL discovered files (not just CLAUDE.md)
    - Synthesizes project overview, tech stack, dos/don'ts from all sources
-   - Incorporates patterns from LESSONS_LEARNED.md
+   - Incorporates patterns from `/docs/LESSONS_LEARNED.md`
    - Asks probing questions only if critical info still missing
    - Reorganizes into clean categories
    - Reduces from potentially 200-500+ lines to ~80-120 lines
-7. **Creates** `ARCHITECTURE.md` if missing
-8. **Preserves** `LESSONS_LEARNED.md` unchanged (it's fine to be large)
+7. **Creates** `/docs/ARCHITECTURE.md` if missing
+8. **Moves and preserves** `/docs/LESSONS_LEARNED.md` (moves from root if needed, unchanged - it's fine to be large)
 9. **Preserves** all task completion status (✓ done, 🚧 in progress)
 
 ### Usage
@@ -183,13 +183,13 @@ INNOVATION_IDEAS.md (mentions "See /docs/api-design.md")
 ```
 
 **What `/re-bootstrap` does**:
-1. Reads `CLAUDE.md` → finds reference to `ARCHITECTURE.md`
-2. Reads `ARCHITECTURE.md` → finds reference to `INNOVATION_IDEAS.md`
+1. Reads `CLAUDE.md` → finds reference to `/docs/ARCHITECTURE.md`
+2. Reads `/docs/ARCHITECTURE.md` → finds reference to `INNOVATION_IDEAS.md`
 3. Reads `INNOVATION_IDEAS.md` → finds reference to `/docs/api-design.md`
 4. Reads `/docs/api-design.md` → no new references, chain complete
 5. Synthesizes knowledge from all 4 files into new lean `CLAUDE.md`
 
-**Result**: New CLAUDE.md contains distilled wisdom from all files, organized cleanly. Nothing lost, everything preserved in appropriate files.
+**Result**: New CLAUDE.md contains distilled wisdom from all files, organized cleanly. Files moved to `/docs/` folder for better organization. Nothing lost, everything preserved in appropriate files.
 
 ### Safety
 
@@ -199,7 +199,7 @@ INNOVATION_IDEAS.md (mentions "See /docs/api-design.md")
   cp -r docs_backup/YYYY-MM-DD-HHMMSS/* ./
   ```
 - Re-bootstrap is reversible
-- LESSONS_LEARNED.md is never modified (just preserved)
+- `/docs/LESSONS_LEARNED.md` is never modified (just moved to /docs/ if needed and preserved)
 
 ---
 

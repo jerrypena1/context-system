@@ -30,16 +30,16 @@ Update task status in **REAL-TIME** as you progress:
 
 ### Before Marking ANY Task Complete
 
-**HARD REQUIREMENT**: Check `LESSONS_LEARNED.md` before completing tasks
+**HARD REQUIREMENT**: Check `/docs/LESSONS_LEARNED.md` before completing tasks
 
-1. Read `LESSONS_LEARNED.md` (if it exists)
+1. Read `/docs/LESSONS_LEARNED.md` (if it exists)
 2. If file has content: Verify your changes don't violate documented lessons
 3. If empty or doesn't exist: Proceed normally
 4. **NEVER** mark a task complete without this check
 
 ### 3-Strike Rule: When to Document
 
-Add to `LESSONS_LEARNED.md` when:
+Add to `/docs/LESSONS_LEARNED.md` when:
 - After 3 failed attempts that finally succeed
 - Discovering a subtle bug or anti-pattern
 - Finding a better approach than initial implementation
@@ -60,7 +60,7 @@ Add to `LESSONS_LEARNED.md` when:
 2. Auto-load that phase file from `/docs/tasks/phase-*.md`
 3. Work on tasks, **updating status in real-time**
 4. **Before marking phase complete**:
-   - Check `LESSONS_LEARNED.md` for any lessons from this phase
+   - Check `/docs/LESSONS_LEARNED.md` for any lessons from this phase
    - **Ask user for verification** of completed work
 5. **After user approves**:
    - **Update `/docs/ARCHITECTURE.md`** with any architectural changes:
@@ -112,5 +112,5 @@ Add to `LESSONS_LEARNED.md` when:
 ## Notes
 - **Context Optimization**: Only active phase file (`[ ] 🚧`) is loaded
 - **Update in real-time**: Don't wait until end to update task status
-- **Check LESSONS_LEARNED.md**: Before completing any task
+- **Check /docs/LESSONS_LEARNED.md**: Before completing any task
 - **Manual testing**: User verification between major phases

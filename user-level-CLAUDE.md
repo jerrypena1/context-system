@@ -8,7 +8,7 @@
 2. **If NOT found**, ask user **once**:
    > "I don't see a CLAUDE.md file in this project. How would you like to set it up?
    >
-   > **A) Bootstrap Mode** - Full setup with guided questions (creates _tasks.md, ARCHITECTURE.md, phase files)
+   > **A) Bootstrap Mode** - Full setup with guided questions (creates /docs/_tasks.md, /docs/ARCHITECTURE.md, phase files in /docs/tasks/)
    >
    > **B) Generic Template** - Minimal CLAUDE.md with placeholders (you customize later)
    >
@@ -20,10 +20,6 @@
    - **Skip**: Create from `~/.claude/templates/CLAUDE-skip.md`
 
 4. **Future conversations**: File exists → Use it, never ask again
-
-**Required Setup** (one-time):
-- Templates must exist in `~/.claude/templates/` directory
-- If templates missing, inform user to set them up first
 
 ---
 
@@ -99,7 +95,7 @@ if (counter >= 100) counter = 0;
 **If you fail 3 times on the same problem:**
 1. **STOP** - Don't keep trying the same approach
 2. **RESEARCH** - Search documentation, Stack Overflow, GitHub issues
-3. **DOCUMENT** - Add solution to `LESSONS_LEARNED.md` (if project has one)
+3. **DOCUMENT** - Add solution to `docs/LESSONS_LEARNED.md` (if project has one)
 
 **Lesson Format**:
 ```markdown
@@ -137,5 +133,5 @@ Before marking work complete:
 - [ ] No obvious bugs or edge cases
 - [ ] Comments explain WHY (not WHAT)
 - [ ] Changes are incremental and testable
-- [ ] If project has `LESSONS_LEARNED.md`, check it for related lessons
+- [ ] If project has `docs/LESSONS_LEARNED.md`, check it for related lessons
 - [ ] If failed 3+ times, documented the solution
