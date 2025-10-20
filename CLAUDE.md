@@ -28,6 +28,24 @@ Based on project complexity, suggest appropriate phases:
 
 After gathering sufficient information:
 
+**⚠️ CRITICAL - TASK MANAGEMENT SYSTEM ⚠️**
+
+This project uses **FILE-BASED task tracking**. You MUST follow these rules:
+
+- **NEVER use the TodoWrite tool** - It conflicts with this system
+- **ALWAYS update tasks in these files**:
+  - `/docs/_tasks.md` - Master task list with phase checklist
+  - `/docs/tasks/phase-*.md` - Detailed tasks for current phase
+- **How to track progress**:
+  1. Check current phase in `/docs/_tasks.md`
+  2. Read the active phase file (e.g., `/docs/tasks/phase-01-setup.md`)
+  3. As you complete tasks, update checkboxes: `[ ]` → `[x]`
+  4. When phase is done, update status in `/docs/_tasks.md`: `[ ]` → `[x] ✅`
+
+**TodoWrite is FORBIDDEN in this project.** All task tracking happens in files.
+
+---
+
 1. **Create directories**:
    ```bash
    mkdir -p docs/tasks
@@ -73,6 +91,24 @@ After gathering sufficient information:
 [2-3 sentence summary based on conversation]
 
 **Architecture**: See `/docs/ARCHITECTURE.md` for system overview, project structure, data flow, and technical details.
+
+---
+
+## ⚠️ Task Management - CRITICAL ⚠️
+
+**NEVER use TodoWrite tool.** This project uses file-based task tracking.
+
+**Task Tracking System**:
+- `/docs/_tasks.md` - Master phase checklist (high-level)
+- `/docs/tasks/phase-*.md` - Current phase tasks (detailed)
+
+**How to Update Progress**:
+1. Check current phase in `/docs/_tasks.md`
+2. Open the active phase file (e.g., `/docs/tasks/phase-02-foundation.md`)
+3. Mark tasks complete: `[ ]` → `[x]`
+4. When phase done, update `/docs/_tasks.md`: `[ ]` → `[x] ✅ Phase N: Name`
+
+**TodoWrite is FORBIDDEN.** All progress tracking happens in these markdown files.
 
 ---
 
